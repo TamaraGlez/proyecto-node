@@ -1,5 +1,8 @@
 const express = require("express");
-
+// importamos la base de datos
+const db = require('./src/utils/db')
+console.log('DB dentro de index', db)
+db.connectDB();
 
 const PORT = 8080;
 
