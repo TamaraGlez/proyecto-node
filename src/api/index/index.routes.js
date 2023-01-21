@@ -1,13 +1,9 @@
 const express = require('express');
-
+const controller = require('./index.controller');
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    return res.status(200).json('API ROOT');
-});
+router.get('/', controller.indexGet );
 
-router.get('/status', (req, res,next) => {
-    return res.status(200).json('STATUS OK - server working')
-});
+router.get('/status', controller.statusGet);
 
 module.exports = router;
