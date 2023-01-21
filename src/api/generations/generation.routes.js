@@ -1,8 +1,13 @@
 const express = require ('express');
+const controller = require('./generation.controller');
+
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    return res.status(200).json('Ok, generations routes working')
-});
+router.get('/', controller.indexGet);
+
+router.post('/create', controller.createPost);
+
+
+
 
 module.exports = router;

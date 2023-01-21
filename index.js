@@ -13,12 +13,15 @@ const server = express();
 const router = express.Router();
 // me transforma lo que envio a un lenguaje que entienda postman
 server.use(express.json());
+// server.use(express.urlencoded({ extended: true }));//para peticiones de un formulario x-www-form en post
 
 //configuración de todas las rutas de nuestro servidor
-server.use("/", indexRoutes);
 server.use("/generations", generationsRoutes);
+server.use("/", indexRoutes);
+
 
 // hacemos que el server comience a echar chispitas
 server.listen(PORT, () => {
   console.log(`[Server] echando chispas en http://localhost:${PORT}`);
 });
+
