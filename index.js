@@ -20,6 +20,20 @@ server.use("/generations", generationsRoutes);
 server.use("/", indexRoutes);
 
 
+
+server.use("*", (req, res, next) => {
+  return res.status(404).json("No se encuentra la URL. Prueba con otra URL");
+});
+
+// Controlador de errores.
+server.use((error, req, res, next) => {
+  const status = error.status || 500;
+  const message = error.message || "Unexpected Error!";
+  return res.status(status).json(message);
+});
+
+
+
 // hacemos que el server comience a echar chispitas
 server.listen(PORT, () => {
   console.log(`[Server] echando chispas en http://localhost:${PORT}`);
