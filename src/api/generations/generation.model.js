@@ -4,21 +4,24 @@ const generationSchema = new mongoose.Schema (
     {
         name:{
             type: String,
-            required: [true, "Debes poner el nombre de la Generación" ]
+            // required: [true, "Debes poner el nombre de la Generación" ]
         },
 
         description:{
             type: String,
-            required: [true, "Debes poner una descripción"]
+            // required: [true, "Debes poner una descripción"]
         },
 
         creators:{
-            type: String,
+            type: mongoose.Types.ObjectId,
+            ref: 'gods',
         },
 
         gods:{
-            type: String,
+            type: mongoose.Types.ObjectId,
+            ref:'gods',
         },
+
     },
     {
         timestamps: true,

@@ -2,7 +2,7 @@ const Generation = require("./generation.model");
 
 const indexGet = async (req, res, next) => {
   try {
-    const generations = await Generation.find();
+    const generations = await Generation.find().populate( {path: "gods", select: "name",}).populate({path: "creators", select: "name"});
     return res.status(200).json(generations);
   } catch (error) {
     return next(error);
