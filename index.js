@@ -1,10 +1,16 @@
 const express = require("express");
+
+const passport = require("passport");
+const auth = require('./src/utils/auth/index');
+auth.activateAutentication();
+
 // importamos la base de datos y la ruta del archivo
 const db = require("./src/utils/db");
 // importamos la función de db.js del módulo de exportación
 db.connectDB();
 
 //camino que sigue index para encontrar los archivos que necesita para ejecutar
+const usersRoutes = require('./src/api/users/user.routes');
 const godsRoutes = require("./src/api/gods/god.routes");
 const generationsRoutes = require("./src/api/generations/generation.routes");
 const indexRoutes = require("./src/api/index/index.routes"); //importo index.routes
@@ -18,7 +24,10 @@ const router = express.Router();
 server.use(express.json());
 // server.use(express.urlencoded({ extended: true }));//para peticiones de un formulario x-www-form en post
 
+
+server.use(passport.initialize()); //lo usamos en utils auth
 //configuración de todas las rutas de nuestro servidor
+server.use("/users", usersRoutes)
 server.use("/gods", godsRoutes);
 server.use("/generations", generationsRoutes);
 server.use("/", indexRoutes);

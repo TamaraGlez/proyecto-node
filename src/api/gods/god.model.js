@@ -28,9 +28,9 @@ const godSchema = new mongoose.Schema (
             type: String,
         },
 
-        creators:{
-            type: String,
-            // required: [true, "Debes poner el nombre del creador/padre" ]
+        generations:{
+            type: mongoose.Types.ObjectId,
+            ref: 'generations',
         },
 
         offspring:{

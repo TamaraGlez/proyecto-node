@@ -12,15 +12,15 @@ const generationSchema = new mongoose.Schema (
             // required: [true, "Debes poner una descripción"]
         },
 
-        creators:{
+        creators:[{
             type: mongoose.Types.ObjectId,
             ref: 'gods',
-        },
+        }],
 
-        gods:{
+        gods:[{
             type: mongoose.Types.ObjectId,
             ref:'gods',
-        },
+        }],
 
     },
     {

@@ -2,7 +2,7 @@ const God = require("./god.model");
 
 const indexGet = async (req, res, next) => {
   try {
-    const gods = await God.find();
+    const gods = await God.find().populate( {path: "generations", select: "name",});
     return res.status(200).json(gods);
   } catch (error) {
     return next(error);
